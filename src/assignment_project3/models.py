@@ -12,7 +12,7 @@ class Base(DeclarativeBase):
     pass
 
 
-experiment_subject = Table(  # TABELA POŚREDNIA DLA M-M!
+experiment_subject = Table(  # INTERMEDIATE TABLE FOR M-M RELATIONSHIP!
     "experiment_subject",
     Base.metadata,
     Column("experiment_id", Integer, ForeignKey("experiment.id"), primary_key=True),
@@ -30,9 +30,9 @@ class Experiment(Base):
     finished = Column(Boolean, default=False)
 
     data_points = relationship("DataPoint", back_populates="experiment",
-                               cascade="all, delete-orphan")  # Relacja 1-M! jeden eksperyment ma wiele DataPoint
+                               cascade="all, delete-orphan")  # 1-M RELATIONSHIP! One Experiment has multiple DataPoints
     subjects = relationship("Subject", secondary=experiment_subject,
-                            back_populates="experiments")  # Relacja M-M! Relacja wiele-do-wielu z Subject
+                            back_populates="experiments")  # M-M RELATIONSHIP! Many-to-Many Relationship with Subject
 
     def __repr__(self) -> str:
         return f"<Experiment {self.id}: {self.title} (finished={self.finished})>"
@@ -46,7 +46,7 @@ class DataPoint(Base):
     target_value = Column(Float, nullable=False)
     experiment_id = Column(Integer, ForeignKey("experiment.id"), nullable=False)
 
-    experiment = relationship("Experiment", back_populates="data_points")  ## Relacja 1-1!
+    experiment = relationship("Experiment", back_populates="data_points")  # 1-1 RELATIONSHIP!
 
     def __repr__(self) -> str:
         return f"<DataPoint {self.id}: {self.real_value} → {self.target_value}>"
