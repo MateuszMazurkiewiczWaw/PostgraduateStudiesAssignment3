@@ -171,22 +171,14 @@ def main():
     # print("Usunięto wszystkie wiersze z tabel")
     # print()
 
-    print("6. Usuwanie hurtowe wszystkich rekordów".ljust(50), "→", end=" ")
+    print("6. Usuwanie hurtowe wszystkich rekordów (w tym tabeli pośredniej)".ljust(50), "→", end=" ")
+    session.execute(delete(experiment_subject))
     session.execute(delete(DataPoint))
     session.execute(delete(Subject))
     session.execute(delete(Experiment))
     session.commit()
     print("OK - Usunięto wszystkie wiersze z tabel")
     print()
-
-
-
-
-
-
-
-
-
 
 
     # ------------------------------------------------------------------ #
