@@ -1,0 +1,20 @@
+[project]
+name = "assignment-project3"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "MateuszMazurkiewiczWaw",email = "mateusz.mazurkiewiczwaw@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "sqlalchemy (>=2.0.44,<3.0.0)",
+    "alembic (>=1.17.1,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "assignment_project3", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
